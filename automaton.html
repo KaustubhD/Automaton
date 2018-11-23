@@ -11,7 +11,7 @@
     --dim: 13px;
   }
   body{
-    margin: 0;
+    margin: 0px;
     background-color: #000;
   }
   .row{
@@ -42,14 +42,12 @@
 
 let screenWidth = window.innerWidth
 let screenHeight = window.innerHeight
-// let height = 500
-
 let cellDimension = 12
+let ruleNo = '110'
+
 document.documentElement.style.setProperty('--dim', `${cellDimension}px`)
 let cellsInRow = Math.floor(screenWidth / cellDimension)
 let numRows = Math.floor(screenHeight / cellDimension)
-console.log('Num Cols', cellsInRow)
-console.log('Num Rows', screenHeight)
 
 let container = document.querySelector('div.container')
 let firstRow = document.querySelector('div.row')
@@ -85,50 +83,61 @@ function duplicateRow(){
 }
 
 function operateOnNewRow(currentRow, prevRow){
-  // console.log(currentRow)
-  // console.log(prevRow)
   let currentChildren = currentRow.childNodes
   let prevChildren = prevRow.childNodes
   for(let cell = 0; cell < currentChildren.length; cell++){
     let prev = prevChildren[cell]
     let prevLeft = prevChildren[cell].previousElementSibling || prevChildren[prevChildren.length - 1]
     let prevRight = prevChildren[cell].nextElementSibling || prevChildren[0]
-    changeChildState(currentChildren[cell], prevLeft, prev, prevRight)
+
+    let temp = changeChildState.bind(null, currentChildren[cell], prevLeft, prev, prevRight)
+    currentChildren[cell].className = ''
+    temp([1,1,1], 'active')
+    // temp([1,1,0], 'inactive')
+    // temp([1,0,1], 'inactive')
+    temp([1,0,0], 'active')
+    // temp([0,1,1], 'inactive')
+    // temp([0,1,0], 'inactive')
+    temp([0,1,0], 'active')
+    temp([0,0,1], 'active')
+    // temp([0,0,0], 'inactive')
+    if(currentChildren[cell].classList.length == 0){
+      currentChildren[cell].classList.add('inactive')
+  }
   }
 }
 
-function changeChildState(current, prevLeft, prev, prevRight){
-//  console.log('Current', current)
-//  console.log('prevLeft', prevLeft)
-//  console.log('prev', prev)
-//  console.log('prevRight', prevRight)
- current.className = ''
- if( isActive(prevLeft) && isActive(prev) && isActive(prevRight) ){
-   current.classList.add('active')
- }
- else if( isActive(prevLeft) && isActive(prev) && !isActive(prevRight) ){
-   current.classList.add('inactive')
- }
- else if( isActive(prevLeft) && !isActive(prev) && isActive(prevRight) ){
-   current.classList.add('inactive')
- }
- else if( isActive(prevLeft) && !isActive(prev) && !isActive(prevRight) ){
-   current.classList.add('active')
- }
- else if( !isActive(prevLeft) && isActive(prev) && isActive(prevRight) ){
-   current.classList.add('inactive')
- }
- else if( !isActive(prevLeft) && isActive(prev) && !isActive(prevRight) ){
-   current.classList.add('active')
- }
- else if( !isActive(prevLeft) && !isActive(prev) && isActive(prevRight) ){
-   current.classList.add('active')
- }
- else if( !isActive(prevLeft) && !isActive(prev) && !isActive(prevRight) ){
-   current.classList.add('inactive')
- }
- if(current.classList.length == 0)
-  current.classList.add('inactive')
+// let rules = [[1,1,1], [1,0,0], [0,1,0], [0,0,1]]
+function changeChildState(current, prevLeft, prev, prevRight, rule, classNm){
+  // console.log(classNm)
+//  current.className = ''
+//  if( isActive(prevLeft) == 1 && isActive(prev) == 1 && isActive(prevRight) == 1 ){
+//    current.classList.add('active')
+//  }
+//  if( isActive(prevLeft) == 1 && isActive(prev) == 1 && isActive(prevRight) == 0 ){
+//    current.classList.add('inactive')
+//  }
+//  if( isActive(prevLeft) == 1 && isActive(prev) == 0 && isActive(prevRight) == 1 ){
+//    current.classList.add('inactive')
+//  }
+//  if( isActive(prevLeft) == 1 && isActive(prev) == 0 && isActive(prevRight) == 0 ){
+//    current.classList.add('active')
+//  }
+//  if( isActive(prevLeft) == 0 && isActive(prev) == 1 && isActive(prevRight) == 1 ){
+//    current.classList.add('inactive')
+//  }
+//  if( isActive(prevLeft) == 0 && isActive(prev) == 1 && isActive(prevRight) == 0 ){
+//    current.classList.add('active')
+//  }
+//  if( isActive(prevLeft) == 0 && isActive(prev) == 0 && isActive(prevRight) == 1 ){
+//    current.classList.add('active')
+//  }
+//  if( isActive(prevLeft) == 0 && isActive(prev) == 0 && isActive(prevRight) == 0 ){
+//    current.classList.add('inactive')
+//  }
+  if(isActive(prevLeft) == rule[0] && isActive(prev) == rule[1] && isActive(prevRight) == rule[2]){
+    current.classList.add(classNm)
+  }
 }
 
 function isActive(element){
