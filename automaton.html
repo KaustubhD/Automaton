@@ -7,10 +7,67 @@
   <title>Automaton Rule 110</title>
 </head>
 <style>
+  body{
+    background-color: #000;
+  }
+  .row div{
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    margin: 4px;
+  }
+  .active{
+    background-color: #303F9F;
+    /* background-color: #673AB7; */
+  }
+  .inactive{
+    background-color: #FF5722;
+    /* background-color: #D1C4E9; */
+  }
 </style>
 <body>
   <div class="container">
     <div class="row"></div>
   </div>
 </body>
+
+<script>
+
+let screenWidth = 500
+// let height = 500
+
+// let cellDimension = 10
+let cellsInRow = 50
+
+let container = document.querySelector('div.container')
+let firstRow = document.querySelector('div.row')
+let cell = null
+
+for(let i = 0; i < cellsInRow; i++){
+  cell = document.createElement('div')
+  cell.classList.add(randomiseCell())
+  firstRow.appendChild(cell)
+}
+
+// To be used with first row only
+function randomiseCell(){
+  return Math.random() <= 0.5 ? 'active' : 'inactive'
+}
+
+function duplicateRow(){
+  let newRow = firstRow.cloneNode(true)
+  container.appendChild(newRow)
+}
+duplicateRow()
+
+
+
+
+
+
+
+
+
+
+</script>
 </html>
