@@ -1,47 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Automaton Rule 110</title>
-</head>
-<style>
-  :root{
-    --dim: 13px;
-  }
-  body{
-    margin: 0px;
-    background-color: #000;
-  }
-  .row{
-    height: var(--dim);
-  }
-  .row div{
-    display: inline-block;
-    height: var(--dim);
-    width: var(--dim);
-    /* margin: 1px; */
-  }
-  .active{
-    background-color: #8BC34A;
-  }
-  .inactive{
-    background-color: #303F9F;
-  }
-</style>
-<body>
-  <div class="container">
-    <div class="row"></div>
-  </div>
-</body>
-
-<script>
 
 let screenWidth = window.innerWidth
 let screenHeight = window.innerHeight
 let cellDimension = 12
-let ruleNo = '110'
+// let ruleNo = '110'
 
 document.documentElement.style.setProperty('--dim', `${cellDimension}px`)
 let cellsInRow = Math.floor(screenWidth / cellDimension)
@@ -119,15 +80,3 @@ let a = setInterval(function(){
   countIters++
   if(countIters >= numRows - 1){ clearInterval(a) }
 }, 100)
-
-
-
-
-
-
-
-
-
-
-</script>
-</html>

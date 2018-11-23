@@ -1,0 +1,22 @@
+:root{
+  --dim: 13px;
+}
+body{
+  margin: 0px;
+  background-color: #000;
+}
+.row{
+  height: var(--dim);
+}
+.row div{
+  display: inline-block;
+  height: var(--dim);
+  width: var(--dim);
+  /* margin: 1px; */
+}
+.active{
+  background-color: #8BC34A;
+}
+.inactive{
+  background-color: #303F9F;
+}
