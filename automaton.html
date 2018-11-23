@@ -25,11 +25,9 @@
   }
   .active{
     background-color: #8BC34A;
-    /* background-color: #673AB7; */
   }
   .inactive{
     background-color: #303F9F;
-    /* background-color: #D1C4E9; */
   }
 </style>
 <body>
@@ -90,54 +88,25 @@ function operateOnNewRow(currentRow, prevRow){
     let prevLeft = prevChildren[cell].previousElementSibling || prevChildren[prevChildren.length - 1]
     let prevRight = prevChildren[cell].nextElementSibling || prevChildren[0]
 
-    let temp = changeChildState.bind(null, currentChildren[cell], prevLeft, prev, prevRight)
+    // let temp = changeChildState.bind(null, currentChildren[cell], prevLeft, prev, prevRight)
     currentChildren[cell].className = ''
-    temp([1,1,1], 'active')
-    // temp([1,1,0], 'inactive')
-    // temp([1,0,1], 'inactive')
-    temp([1,0,0], 'active')
-    // temp([0,1,1], 'inactive')
-    // temp([0,1,0], 'inactive')
-    temp([0,1,0], 'active')
-    temp([0,0,1], 'active')
-    // temp([0,0,0], 'inactive')
+    changeChildState(currentChildren[cell], prevLeft, prev, prevRight)
     if(currentChildren[cell].classList.length == 0){
       currentChildren[cell].classList.add('inactive')
   }
   }
 }
 
-// let rules = [[1,1,1], [1,0,0], [0,1,0], [0,0,1]]
+// let rules = [[1,1,1], [1,0,0], [0,1,0], [0,0,1]] // 110
+let rules = [[1,1,0], [1,0,1], [0,1,1], [0,1,0], [0,0,1]] // 150
 function changeChildState(current, prevLeft, prev, prevRight, rule, classNm){
-  // console.log(classNm)
-//  current.className = ''
-//  if( isActive(prevLeft) == 1 && isActive(prev) == 1 && isActive(prevRight) == 1 ){
-//    current.classList.add('active')
-//  }
-//  if( isActive(prevLeft) == 1 && isActive(prev) == 1 && isActive(prevRight) == 0 ){
-//    current.classList.add('inactive')
-//  }
-//  if( isActive(prevLeft) == 1 && isActive(prev) == 0 && isActive(prevRight) == 1 ){
-//    current.classList.add('inactive')
-//  }
-//  if( isActive(prevLeft) == 1 && isActive(prev) == 0 && isActive(prevRight) == 0 ){
-//    current.classList.add('active')
-//  }
-//  if( isActive(prevLeft) == 0 && isActive(prev) == 1 && isActive(prevRight) == 1 ){
-//    current.classList.add('inactive')
-//  }
-//  if( isActive(prevLeft) == 0 && isActive(prev) == 1 && isActive(prevRight) == 0 ){
-//    current.classList.add('active')
-//  }
-//  if( isActive(prevLeft) == 0 && isActive(prev) == 0 && isActive(prevRight) == 1 ){
-//    current.classList.add('active')
-//  }
-//  if( isActive(prevLeft) == 0 && isActive(prev) == 0 && isActive(prevRight) == 0 ){
-//    current.classList.add('inactive')
-//  }
-  if(isActive(prevLeft) == rule[0] && isActive(prev) == rule[1] && isActive(prevRight) == rule[2]){
-    current.classList.add(classNm)
+
+  for(rule of rules){
+    if(isActive(prevLeft) == rule[0] && isActive(prev) == rule[1] && isActive(prevRight) == rule[2]){
+      current.classList.add('active')
+    }
   }
+
 }
 
 function isActive(element){
