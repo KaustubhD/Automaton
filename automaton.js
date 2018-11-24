@@ -75,8 +75,8 @@ function isActive(element){
 }
 
 let countIters = 0
-let a = setInterval(function(){
-  duplicateRow()
-  countIters++
-  if(countIters >= numRows - 1){ clearInterval(a) }
-}, 100)
+// let a = setInterval(function(){
+//   duplicateRow()
+//   countIters++
+//   if(countIters >= numRows - 1){ clearInterval(a) }
+// }, 100)
