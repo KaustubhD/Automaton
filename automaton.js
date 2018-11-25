@@ -16,7 +16,7 @@ let container = document.querySelector('div.container')
 let firstRow = document.querySelector('div.row')
 let cell = null
 
-const COLORS = [
+let COLORS = [
   ['#8BC34A', '#303F9F'], 
   ['#2196F3', '#512DA8'], 
   ['#FFCA28', '#9C27B6'], 
@@ -34,6 +34,15 @@ const COLORS = [
 
 
 /*  ***------- Variables end-------***  */
+
+
+function selectTheme(){
+  let col = COLORS[Math.floor(Math.random() * COLORS.length)]
+  document.documentElement.style.setProperty('--inactive', col[0])
+  document.documentElement.style.setProperty('--active', col[1])
+}
+selectTheme()
+
 
 
 // -----Start for first row
