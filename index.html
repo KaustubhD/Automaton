@@ -9,9 +9,17 @@
 </head>
 <body>
 
+  <div class="input-container">
+    <label for="rule">
+      Enter rule number from 0 to 256. E.g 110
+    </label>
+    <input id="rule" type="number" min="1" max="255" placeholder="" required value="110"/>
+    <span>Press enter to generate</span>
+  </div>
   <div class="container">
     <div class="row"></div>
   </div>
 
+  <script src="automaton.js"></script>
 </body>
 </html>
