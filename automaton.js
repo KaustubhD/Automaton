@@ -5,8 +5,8 @@ let screenWidth = window.innerWidth
 let screenHeight = window.innerHeight
 let cellDimension = 12
 let ruleNo = '110'
+
 let rules = [[1,1,1], [1,0,0], [0,1,0], [0,0,1]] // 110
-// let rules = [[1,1,0], [1,0,1], [0,1,1], [0,1,0], [0,0,1]] // 150
 
 document.documentElement.style.setProperty('--dim', `${cellDimension}px`)
 let cellsInRow = Math.floor(screenWidth / cellDimension)
@@ -37,10 +37,6 @@ function randomiseRow(rowElement){
     x = firstRow.childNodes[i]
     x.classList.add(Math.random() <= 0.5 ? 'active' : 'inactive')
   }
-  //   firstRow.childNodes[i].classList.add('inactive')
-  // }
-  // firstRow.childNodes[firstRow.childNodes.length / 2].classList.remove('inactive')
-  // firstRow.childNodes[firstRow.childNodes.length / 2].classList.add('active')
 }
 
 // -----Ending for first row
@@ -50,7 +46,6 @@ function duplicateRow(){
   let allRows = document.querySelectorAll('.row')
   let newRow = allRows[0].cloneNode(true)
   container.appendChild(newRow)
-  // console.log(allRows)
   operateOnNewRow(newRow, allRows[allRows.length - 1])
 }
 
@@ -62,7 +57,6 @@ function operateOnNewRow(currentRow, prevRow){
     let prevLeft = prevChildren[cell].previousElementSibling || prevChildren[prevChildren.length - 1]
     let prevRight = prevChildren[cell].nextElementSibling || prevChildren[0]
 
-    // let temp = changeChildState.bind(null, currentChildren[cell], prevLeft, prev, prevRight)
     currentChildren[cell].className = ''
     changeChildState(currentChildren[cell], prevLeft, prev, prevRight, rules)
     if(currentChildren[cell].classList.length == 0){
@@ -90,6 +84,7 @@ function resetAllRows(){
   }
   parent.innerHTML = '<div class="row"></div>'
 }
+
 function makeRule(ruleNo){
   let binary = parseInt(ruleNo).toString(2).split('')
   console.log('Binary ' + binary)
@@ -102,8 +97,6 @@ function makeRule(ruleNo){
       return '0'.repeat(3 - el.length).concat(el).split('')
     }
   }).filter((el) => {return el})
-  // console.log(newArray)
-  // return rules
 }
 
 let countIters = 0
@@ -120,7 +113,6 @@ function doItWithoutInterval(){
   resetAllRows()
   ruleNo = document.getElementById('rule').value
   makeRule(ruleNo)
-  // console.log(rules)
   makeFirstRow()
   console.log('Made first row')
   for(let i = 0; i < numRows; i++){
@@ -131,10 +123,6 @@ function doItWithoutInterval(){
 
 document.addEventListener('keydown', function(event){
   if(event.keyCode == '13'){
-    // duplicateRow()
-    // makeRule('10')
     doItWithoutInterval()
-    // console.log(ruleNo)
   }
-    // console.log('Pressed enter')
 }, false)
