@@ -126,3 +126,6 @@ document.addEventListener('keydown', function(event){
     doItWithoutInterval()
   }
 }, false)
+document.getElementById('click_it').addEventListener('click', function(event){
+  doItWithoutInterval()
+}, false)

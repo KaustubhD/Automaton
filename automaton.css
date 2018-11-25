@@ -16,6 +16,11 @@ body{
   align-items: center;
   color: var(--inactive);
   font-family: Roboto, sans-serif;
+  font-size: 1.1em;
+}
+#click_it{
+  font-size: 1.3em;
+  vertical-align: bottom;
 }
 #rule{
   /* height: 30px; */
