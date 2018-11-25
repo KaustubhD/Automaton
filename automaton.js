@@ -16,6 +16,22 @@ let container = document.querySelector('div.container')
 let firstRow = document.querySelector('div.row')
 let cell = null
 
+const COLORS = [
+  ['#8BC34A', '#303F9F'], 
+  ['#2196F3', '#512DA8'], 
+  ['#FFCA28', '#9C27B6'], 
+  ['#FF5722', '#3F51B5'], 
+  ['#FFD740', '#689F38'], 
+  ['#FF9800', '#29B6F6'], 
+  ['#CDDC39', '#009688'], 
+  ['#FDD835', '#009688'], 
+  ['#4CAF50', '#5D4037'], 
+  ['#FDD835', '#607D8B'], 
+  ['#003399', '#872657'], 
+  ['#FFCA28', '#795548'], 
+  ['#808080', '#FDF8EB']
+]
+
 
 /*  ***------- Variables end-------***  */
 
